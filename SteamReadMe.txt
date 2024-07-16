@@ -1,13 +1,18 @@
 [h1]Quasimorph Pause on production[/h1]
 
 
-When a item is produced, the game is paused and the production screen is opened.
+When the last item in a queue is produced, the game will be paused and the production screen opened.
 
 [h1]Source Code[/h1]
 
 Source code is available on GitHub https://github.com/NBKRedSpy/QM_PauseOnProduction
 
 [h1]Change Log[/h1]
+
+[h1]1.2.0[/h1]
+[list]
+[*]Changed to open the production window when the last item of a queue is completed.
+[/list]
 
 [h1]1.1.0[/h1]
 [list]
