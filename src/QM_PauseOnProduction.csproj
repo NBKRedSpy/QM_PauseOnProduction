@@ -54,10 +54,22 @@
 		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
 	</ItemGroup>
 	<PropertyGroup>
-	  <AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+		<AssemblyVersion>$(VersionPrefix)</AssemblyVersion>
+		<PackageFolder>$(ProjectDir)../package/</PackageFolder>
+
 	</PropertyGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
 		<Exec Command="set deployDir=&quot;$(WorkshopPath)&quot;&#xD;&#xA;echo deploying to %25deployDir%25&#xD;&#xA;&#xD;&#xA;if '$(SteamId)'=='' (echo SteamId Not Set &amp;&amp; exit)&#xD;&#xA;mkdir &quot;$(WorkshopPath)&quot;&#xD;&#xA;&#xD;&#xA;xcopy /f /y   &quot;$(TargetDir)$(TargetName).*&quot; %25deployDir%25&#xD;&#xA;xcopy /f /y   &quot;$(TargetDir)0Harmony.dll&quot; %25deployDir%25&#xD;&#xA;&#xD;&#xA;REM xcopy /f /y &quot;C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Data.dll&quot; %25deployDir%25&#xD;&#xA;REM xcopy /f /y &quot;C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Runtime.Serialization.dll&quot; %25deployDir%25&#xD;&#xA;REM xcopy /f /y  &quot;$(TargetDir)Newtonsoft.Json.dll&quot; %25deployDir%25&#xD;&#xA;" />
+		<ItemGroup>
+			<WorkshopSourceFile Include="$(WorkshopPath)*.*" />
+			<PackageRemoveFiles Include="$(PackageFolder)$(TargetName)/*.pdb" />
+		</ItemGroup>
+		<RemoveDir Directories="$(PackageFolder)" />
+		<Message Text="--------------- $(PackageFolder)$(TargetName)/*.pdb" Importance="high" />
+		<Copy SourceFiles="@(WorkshopSourceFile)" DestinationFolder="$(PackageFolder)$(TargetName)"></Copy>
+		<Delete Files="@(PackageRemoveFiles)" />
+		<ZipDirectory SourceDirectory="$(PackageFolder)" DestinationFile="$(PackageFolder)../$(TargetName).zip" Overwrite="true" />
+
 	</Target>
 	<ItemGroup>
 	  <Reference Update="System">
