@@ -2,7 +2,7 @@
 
 ![Production Pause logo](./media/ProducedWithPause.png)
 
-When the last item in a queue is produced, the game will be paused and the production screen opened.
+When the last item in a queue is produced, the game will be paused and the production screen will be opened.
 
 # Source Code
 Source code is available on GitHub https://github.com/NBKRedSpy/QM_PauseOnProduction
