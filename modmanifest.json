@@ -1,0 +1,7 @@
+{
+    "UniqueModName": "nbk_redspy_QM_PauseOnProduction",
+    "Assemblies": [
+        "QM_PauseOnProduction.dll"
+    ],
+    "Dependencies": []
+}
