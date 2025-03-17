@@ -38,8 +38,9 @@ namespace QM_PauseOnProduction
                 //  causes the production screen to show "Foo <1" instead of the item being completed.
 
                 ShowProduction = false;
-                SpaceshipScreen spaceship = SingletonMonoBehaviour<SpaceUI>.Instance.SpaceshipScreen;
-                spaceship.MagnumProductionWindow.Show();
+
+                //Debug
+                //UI.Chain<MagnumProductionWindow>().Show();
             }
 
             bool queueCompleted = magnumCargo.ItemProduceOrders.Values
@@ -49,8 +50,11 @@ namespace QM_PauseOnProduction
             if (queueCompleted)
             {
 
-                SpaceshipScreen spaceship = SingletonMonoBehaviour<SpaceUI>.Instance.SpaceshipScreen;
-                spaceship.Show();
+                UI.Chain<MagnumProductionWindow>().Show();
+
+                //TODO:  Is this needed?
+                //SpaceshipScreen spaceship = SingletonMonoBehaviour<SpaceUI>.Instance.SpaceshipScreen;
+                //spaceship.Show();
 
                 ShowProduction = true;
             }
