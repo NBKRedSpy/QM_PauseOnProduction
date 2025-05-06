@@ -1,7 +1,9 @@
 ﻿using HarmonyLib;
 using MGSC;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +20,13 @@ namespace QM_PauseOnProduction
         /// The list of production lines that had an order processing before the production loop
         /// </summary>
         public static List<bool> ProductionLinesStatus { get; set; }
-        public static bool ShowProduction { get; set; } = false;
+
+
+        /// <summary>
+        /// If true, will wait for the space screen to be displayed.
+        /// The purpose is to fix the issue where the after screen raid is inoperable due to the production screen being displayed.
+        /// </summary>
+        public static bool ShowProductionWhenOnSpaceScreen { get; set; } = false;
 
 
         public static void Prefix(MagnumCargo magnumCargo)
@@ -28,19 +36,26 @@ namespace QM_PauseOnProduction
 
         }
 
+
+        private static IEnumerator ShowScreen()
+        {
+            yield return UI.Chain<MagnumProductionWindow>().Show();
+        }
+
         public static void Postfix(MagnumCargo magnumCargo)
         {
 
-            if (ShowProduction)
+            if(ShowProductionWhenOnSpaceScreen)
             {
-                //Show the production in a different loop.
-                //  Opening the SpaceshipScreen and MagnumProductionWindow in the same loop
-                //  causes the production screen to show "Foo <1" instead of the item being completed.
+                if(IsOnSpaceScreen())
+                {
+                    ShowProductionWhenOnSpaceScreen = false;
 
-                ShowProduction = false;
+                    ShowProductionScreen();
+                   
+                }
 
-                //Debug
-                //UI.Chain<MagnumProductionWindow>().Show();
+                return;
             }
 
             bool queueCompleted = magnumCargo.ItemProduceOrders.Values
@@ -50,15 +65,36 @@ namespace QM_PauseOnProduction
             if (queueCompleted)
             {
 
-                UI.Chain<MagnumProductionWindow>().Show();
-
-                //TODO:  Is this needed?
-                //SpaceshipScreen spaceship = SingletonMonoBehaviour<SpaceUI>.Instance.SpaceshipScreen;
-                //spaceship.Show();
-
-                ShowProduction = true;
+                if (IsOnSpaceScreen())
+                {
+                    ShowProductionScreen();
+                }
+                else
+                {
+                    ShowProductionWhenOnSpaceScreen = true;
+                }
             }
 
+        }
+
+        private static void ShowProductionScreen()
+        {
+            //This logic is from the main Space Hud Screen, and how the button for that
+            //opens the ship screen, which opens the production screen.
+
+            UI.Chain<SpaceshipScreen>().HideAll().Invoke(delegate (SpaceshipScreen v)
+            {
+                v.ResetFocus();
+            })
+            .Show();
+
+            UI.Get<SpaceshipScreen>().HideAllWindows(hideSideWindow: false);
+            UI.Chain<MagnumProductionWindow>().Show();
+        }
+
+        private static bool IsOnSpaceScreen()
+        {
+            return UI.IsShowing<SpaceHudScreen>();
         }
     }
 }
