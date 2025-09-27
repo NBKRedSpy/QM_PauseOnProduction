@@ -11,3 +11,13 @@ Thanks!
 [h1]Source Code[/h1]
 
 Source code is available on GitHub https://github.com/NBKRedSpy/QM_PauseOnProduction
+
+[h1]Change Log[/h1]
+
+[h2]1.3.2[/h2]
+[list]
+[*]Fixed conflict with "Produce as Ready" mod.
+[list]
+[*]Thank you to Steam user Haydern for reporting this.
+[/list]
+[/list]

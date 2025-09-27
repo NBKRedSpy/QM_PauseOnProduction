@@ -29,6 +29,7 @@ namespace QM_PauseOnProduction
         public static bool ShowProductionWhenOnSpaceScreen { get; set; } = false;
 
 
+        [HarmonyBefore("NBKRedSpy_ProduceAsReady")]
         public static void Prefix(MagnumCargo magnumCargo)
         {
             //Get list of items with only one item in the queue
