@@ -18,13 +18,20 @@ namespace QM_PauseOnProduction
         public static string ConfigPath => Path.Combine(Application.persistentDataPath, ModAssemblyName, ModAssemblyName + ".json");
         public static string ModPersistenceFolder => Path.Combine(Application.persistentDataPath, ModAssemblyName);
 
+        public static State State { get; set; }
+
         [Hook(ModHookType.AfterConfigsLoaded)]
         public static void AfterConfig(IModContext context)
         {
-
+            State = context.State;
             new Harmony("NBK_RedSpy_" + ModAssemblyName).PatchAll();
         }
 
 
+        public static void Log(string message, Exception ex)
+        {
+            Debug.Log($"[{ModAssemblyName}] {message}");
+            Debug.LogException(ex);
+        }
     }
 }

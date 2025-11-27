@@ -14,6 +14,11 @@ Source code is available on GitHub https://github.com/NBKRedSpy/QM_PauseOnProduc
 
 [h1]Change Log[/h1]
 
+[h2]1.3.3[/h2]
+[list]
+[*]Fix for interfering with the after raid screen in certain situations.
+[/list]
+
 [h2]1.3.2[/h2]
 [list]
 [*]Fixed conflict with "Produce as Ready" mod.
