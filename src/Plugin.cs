@@ -20,6 +20,11 @@ namespace QM_PauseOnProduction
 
         public static State State { get; set; }
 
+        /// <summary>
+        /// The target
+        /// </summary>
+        public static OpenScreenTarget OpenScreenTarget { get; set; } = OpenScreenTarget.None;
+
         [Hook(ModHookType.AfterConfigsLoaded)]
         public static void AfterConfig(IModContext context)
         {

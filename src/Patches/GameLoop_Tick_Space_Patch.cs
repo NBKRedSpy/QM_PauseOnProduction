@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace QM_PauseOnProduction
+namespace QM_PauseOnProduction.Patches
 {
 
     /// <summary>
@@ -23,12 +23,6 @@ namespace QM_PauseOnProduction
         /// The list of production lines that had an order processing before the production loop
         /// </summary>
         private static List<bool> ProductionLinesStatus { get; set; }
-
-        /// <summary>
-        /// If true, will wait for the space screen to be displayed.
-        /// The purpose is to fix the issue where the after screen raid is inoperable due to the production screen being displayed.
-        /// </summary>
-        public static bool ShowProductionWhenOnSpaceScreen { get; set; } = false;
 
 
         //[HarmonyBefore("NBKRedSpy_ProduceAsReady")]
@@ -58,7 +52,7 @@ namespace QM_PauseOnProduction
 
                 if (queueCompleted)
                 {
-                    ShowProductionWhenOnSpaceScreen = true;
+                    Plugin.OpenScreenTarget = OpenScreenTarget.Production;
                 }
             }
             catch (Exception ex)

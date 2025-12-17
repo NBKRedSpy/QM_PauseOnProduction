@@ -1,7 +1,11 @@
 [h1]Quasimorph Pause on production[/h1]
 
 
-When the last item in a queue is produced, the game will be paused and the production screen will be opened.
+Will pause the game and open the related screen when:
+[list]
+[*]A production queue is completely empty.
+[*]The recycler has done.
+[/list]
 
 [h1]Support[/h1]
 
@@ -13,6 +17,12 @@ Thanks!
 Source code is available on GitHub https://github.com/NBKRedSpy/QM_PauseOnProduction
 
 [h1]Change Log[/h1]
+
+[h2]1.4.0[/h2]
+[list]
+[*]Additional fix for after raid screen for recycler and production.
+[*]Added recycler pause.
+[/list]
 
 [h2]1.3.3[/h2]
 [list]

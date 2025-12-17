@@ -2,7 +2,9 @@
 
 ![Production Pause logo](./media/ProducedWithPause.png)
 
-When the last item in a queue is produced, the game will be paused and the production screen will be opened.
+Will pause the game and open the related screen when:
+* A production queue is completely empty.
+* The recycler has done.
 
 # Support
 If you enjoy my mods and want to buy me a coffee, check out my [Ko-Fi](https://ko-fi.com/nbkredspy71915) page.
@@ -13,6 +15,10 @@ Thanks!
 Source code is available on GitHub https://github.com/NBKRedSpy/QM_PauseOnProduction
 
 # Change Log
+## 1.4.0
+* Additional fix for after raid screen for recycler and production.
+* Added recycler pause.
+
 ## 1.3.3
 * Fix for interfering with the after raid screen in certain situations.
 

@@ -1,8 +1,9 @@
 ﻿using HarmonyLib;
 using MGSC;
 using System;
+using UnityEngine;
 
-namespace QM_PauseOnProduction
+namespace QM_PauseOnProduction.Patches
 {
     /// <summary>
     /// Relays the request to open the production screen when the space HUD is updated
@@ -17,8 +18,10 @@ namespace QM_PauseOnProduction
             {
                 //Relaying with the flag since trying to use the UI class directly
                 //  was causing issues with the after raid screen.
-                if (GameLoop_Tick_Space_Patch.ShowProductionWhenOnSpaceScreen)
+                if (Plugin.OpenScreenTarget != OpenScreenTarget.None)
                 {
+                    if (!__instance._shipButton.isActiveAndEnabled) return;
+
                     __instance.ShipButtonOnClick(null, 1); //Open the ship screen
                 }
             }
