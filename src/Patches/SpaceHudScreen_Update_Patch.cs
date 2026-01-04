@@ -20,7 +20,10 @@ namespace QM_PauseOnProduction.Patches
                 //  was causing issues with the after raid screen.
                 if (Plugin.OpenScreenTarget != OpenScreenTarget.None)
                 {
-                    if (!__instance._shipButton.isActiveAndEnabled) return;
+                    if (!UI.IsAnyShowing(typeof(SpaceHudScreen)) || !__instance._shipButton.isActiveAndEnabled)
+                    {
+                        return;
+                    }
 
                     __instance.ShipButtonOnClick(null, 1); //Open the ship screen
                 }

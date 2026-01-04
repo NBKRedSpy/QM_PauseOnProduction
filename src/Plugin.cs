@@ -38,5 +38,10 @@ namespace QM_PauseOnProduction
             Debug.Log($"[{ModAssemblyName}] {message}");
             Debug.LogException(ex);
         }
+        
+        public static void LogWarning(string message)
+        {
+            Debug.LogWarning($"[{ModAssemblyName}] {message}");
+        }
     }
 }

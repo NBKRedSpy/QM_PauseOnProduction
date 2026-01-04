@@ -18,6 +18,12 @@ Source code is available on GitHub https://github.com/NBKRedSpy/QM_PauseOnProduc
 
 [h1]Change Log[/h1]
 
+[h2]1.4.1[/h2]
+[list]
+[*]Added a nice after raid screen check.
+[*]Note - this "fix" and the previous "fixes" related to the After Raid screen were actually unnecessary as it turns out the issue is a bug in the game itself, not this mod.  Keeping the "fixes" since it is a refined version of the mod's original check and has been tested.
+[/list]
+
 [h2]1.4.0[/h2]
 [list]
 [*]Additional fix for after raid screen for recycler and production.
