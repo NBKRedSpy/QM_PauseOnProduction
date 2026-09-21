@@ -34,6 +34,10 @@ namespace QM_PauseOnProduction.Patches
                         Plugin.OpenScreenTarget = OpenScreenTarget.None;
                         __instance.ShowProductionWindow();
                         break;
+                    case OpenScreenTarget.Training:
+                        Plugin.OpenScreenTarget = OpenScreenTarget.None;
+                        UI.Chain<MagnumTrainingMercenariesWindow>().Show().Fallback<SpaceshipScreen>();
+                        break;
                     default:
                         throw new ArgumentException($"Unknown OpenScreenTarget value. '{Plugin.OpenScreenTarget}'");
                 }

@@ -1,10 +1,11 @@
-[h1]Quasimorph Pause on production[/h1]
+[h1]Quasimorph Pause on production and Training[/h1]
 
 
 Will pause the game and open the related screen when:
 [list]
 [*]A production queue is completely empty.
 [*]The recycler has done.
+[*]A mercenary has completed all possible training.
 [/list]
 
 [h1]Support[/h1]
@@ -17,6 +18,11 @@ Thanks!
 Source code is available on GitHub https://github.com/NBKRedSpy/QM_PauseOnProduction
 
 [h1]Change Log[/h1]
+
+[h2]2.0.0[/h2]
+[list]
+[*]Added pausing when a merc has finished all training.
+[/list]
 
 [h2]1.4.0[/h2]
 [list]

@@ -23,6 +23,11 @@ namespace QM_PauseOnProduction
         /// <summary>
         /// Open the production screen.
         /// </summary>
-        Production
+        Production,
+
+        /// <summary>
+        /// A merc training has completed and the merc training screen should be opened.
+        /// </summary>
+        Training,
     }
 }
